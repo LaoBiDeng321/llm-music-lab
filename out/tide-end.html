@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>《潮汐尽头》Where the Tide Ends</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 40px 28px 64px;
+    background: #0e1016; color: #cfd6e4;
+    font: 15px/1.7 "Microsoft YaHei", system-ui, sans-serif;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .wrap { width: min(1080px, 100%); }
+  h1 { font-size: 26px; margin: 0 0 4px; letter-spacing: .04em; color: #eef2f8; font-weight: 600; }
+  .sub { color: #7d879c; font-size: 13px; margin-bottom: 26px; letter-spacing: .06em; }
+  audio { width: 100%; margin-bottom: 26px; }
+  .facts {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: #232838; border: 1px solid #232838; margin-bottom: 26px;
+  }
+  .facts div { background: #14171f; padding: 14px 16px; }
+  .facts dt { color: #6f798e; font-size: 12px; letter-spacing: .08em; }
+  .facts dd { margin: 4px 0 0; font-size: 16px; color: #dfe6f2; }
+  img { width: 100%; border: 1px solid #232838; display: block; }
+  .note { color: #6f798e; font-size: 12.5px; margin-top: 14px; }
+  code { color: #8fb7e8; }
+  a { color: #8fb7e8; }
+  @media (max-width: 768px) {
+    .facts { grid-template-columns: repeat(2, 1fr); }
+    body { padding: 24px 14px 48px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>潮汐尽头</h1>
+  <div class="sub">WHERE THE TIDE ENDS · 原创器乐电子 · A 小调 · 92 BPM · 3:12</div>
+
+  <audio controls preload="metadata">
+    <source src="tide-end.flac" type="audio/flac">
+    <source src="tide-end.wav" type="audio/wav">
+  </audio>
+
+  <dl class="facts">
+    <div><dt>时长</dt><dd>3 分 12 秒</dd></div>
+    <div><dt>结构</dt><dd>72 小节 / 8 段</dd></div>
+    <div><dt>声部</dt><dd>15 轨 · 2720 次发声</dd></div>
+    <div><dt>母带</dt><dd>−16.3 dBFS · −1.0 dBTP</dd></div>
+  </dl>
+
+  <img src="tide-end-piano-roll.png" alt="钢琴卷帘图">
+
+  <p class="note">
+    音频与图像均由本项目的文本乐谱渲染生成：<code>python -m tmskit render score/tide-end.tms</code>。
+    波形、钢琴卷帘与全部音色都是自己合成的，没有使用任何采样或第三方音频库。
+  </p>
+  <p class="note">
+    想传给别人？用无损压缩版：<a href="tide-end.flac">tide-end.flac</a>（22 MB，
+    由 <code>python -m tmskit flac</code> 生成，可被任意支持 FLAC 的播放器打开）。
+    仓库里没有 32 MB 的 WAV，需要时用上面的命令重新生成即可。
+  </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+# 冒烟测试乐谱：只验证工具链是否能跑通，不是作品。
+tempo 100
+meter 4/4
+key Am
+seed 1
+
+instrument pad  patch=saw-pad gain=0.9 pan=0.10 reverb=0.6 chorus=0.3
+instrument keys patch=epiano gain=0.9 pan=-0.15 reverb=0.3
+instrument bass patch=sub-bass gain=0.9 pan=0 duck=kick
+instrument drum patch=drumkit gain=1.0 pan=0 reverb=0.15
+instrument lead patch=pluck gain=0.9 pan=-0.1 reverb=0.35 delay=0.2
+
+pattern pad.prog {
+    Am 0 4
+    F  0 4
+    C  0 4
+    G  0 4
+}
+
+pattern keys.arp {
+    Am 0 4
+    F  0 4
+    C  0 4
+    G  0 4
+}
+
+pattern bass.root {
+    A1 0 2 0.9
+    A1 2 1 0.7
+    E2 3 1 0.8
+    F1 4 2 0.9
+    F1 6 1 0.7
+    C2 7 1 0.8
+    C2 8 2 0.9
+    C2 10 1 0.7
+    G2 11 1 0.8
+    G1 12 2 0.9
+    G1 14 1 0.7
+    D2 15 1 0.8
+}
+
+pattern lead.theme {
+    E5 0 1.5 0.92
+    A5 1.5 0.5 0.85
+    G5 2 1 0.82
+    E5 3 1 0.78
+    F5 4 1.5 0.88
+    E5 5.5 0.5 0.8
+    D5 6 1.5 0.78
+    E5 8 1 0.85
+    G5 9 1.5 0.88
+    A5 10.5 0.5 0.8
+    G5 11 1 0.8
+    D5 12 2 0.85
+    B4 14 1 0.78
+}
+
+pattern drum.basic {
+    grid 16
+    kick  X . . . . . X . . . X . . . . .
+    snare . . . . X . . . . . . . X . . .
+    hat   X . x . X . x . X . x . X . x .
+}
+
+arrange
+    bars 1-4   pad.prog, keys.arp, bass.root, lead.theme, drum.basic

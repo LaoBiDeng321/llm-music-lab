@@ -1,0 +1,18 @@
+# 渲染产物：WAV 体积大，且可由乐谱在 ~90 秒内重新生成
+out/*.wav
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# 临时文件
+*.tmp
+_*.wav

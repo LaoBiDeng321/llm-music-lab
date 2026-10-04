@@ -1,0 +1,920 @@
+# ============================================================================
+#  《潮汐尽头》 Where the Tide Ends
+#  全原创器乐电子 / 电影感氛围小品
+#  A 自然小调（E7 处用升七级 G# 作导音）· 92 BPM · 4/4 · 72 小节 ≈ 3:08
+#
+#  结构：序 1-8 / A1 9-16 / A2 17-24 / B1 25-32 / B2 33-40 /
+#        桥 41-48 / 高潮 49-64 / 尾声 65-72
+#  和声：
+#    verse   Am F C G | Am F C G          （i-VI-III-VII，抒情基调）
+#    verse2  Am F C G | Am F Dm E7        （句尾转 iv-V，推动到副歌）
+#    chorus  F C G Am | F C G G           （VI-I-V-i，明亮上行）
+#    chorus2 F C G Am | F Dm E7 E7        （收束到属和弦）
+#    bridge  Am F Dm E7 | Am F Dm E7      （i-VI-iv-V，最直白的哀伤循环）
+#    outro   Am F C G | Am F C Am
+#  动机 M（2+2 句）：E5-A5-G5-E5 / F5-E5-D5 … 级进为主，
+#    第 3 小节上行到 A5 为乐句顶点；全曲最高音 C6 只在第 53 小节出现一次
+#    （位于全曲 72% 处）。
+# ============================================================================
+
+tempo 92
+meter 4/4
+key Am
+humanize 0.008
+swing 0
+seed 20260301
+
+section 序 bars 1-8
+section A1 bars 9-16
+section A2 bars 17-24
+section B1 bars 25-32
+section B2 bars 33-40
+section 桥 bars 41-48
+section 高潮 bars 49-64
+section 尾声 bars 65-72
+
+# ---------------------------------------------------------------------------
+# 声部（音色 / 音量 / 声场 / 混响送出）
+# ---------------------------------------------------------------------------
+instrument pad     patch=saw-pad       gain=0.80 pan=0.10  reverb=0.60 chorus=0.35 humanize=0
+instrument choir   patch=choir-pad     gain=0.75 pan=-0.20 reverb=0.66 chorus=0.30 humanize=0
+instrument keys    patch=epiano        gain=0.85 pan=0.20  reverb=0.36 chorus=0.18 humanize=0.010 chord=arp-up  subdiv=0.5  accent=1,.58,.76,.62
+instrument epi     patch=epiano        gain=0.68 pan=-0.30 reverb=0.44 humanize=0.008 chord=stab    subdiv=1.0  accent=1,.7,.85,.7
+instrument arp     patch=nylon         gain=0.60 pan=-0.45 reverb=0.42 delay=0.20 humanize=0.008 chord=arp-up8 subdiv=0.25 accent=1,.5,.7,.55
+instrument arp2    patch=pluck         gain=0.62 pan=0.45  reverb=0.34 delay=0.26 humanize=0.008 chord=arp-up  subdiv=0.5  accent=1,.6,.8,.6 octave=1
+instrument lead    patch=lead-hybrid   gain=1.10 pan=-0.06 reverb=0.42 delay=0.24 humanize=0.010
+instrument counter patch=nylon         gain=0.65 pan=0.34  reverb=0.40 humanize=0.010
+instrument strings patch=strings       gain=0.70 pan=0.30  reverb=0.60 humanize=0 octave=1
+instrument bass    patch=sub-bass      gain=0.90 pan=0     humanize=0 chord=root8 subdiv=0.5 accent=1,.55,.75,.6 octave=-1 duck=kick
+instrument bass2   patch=sub-bass      gain=0.80 pan=0     humanize=0 chord=root octave=-1
+instrument bell    patch=bell          gain=0.80 pan=-0.35 reverb=0.62 delay=0.18 humanize=0.008
+instrument shimmer patch=shimmer       gain=1.10 pan=0     reverb=0.72 humanize=0 octave=1
+instrument drum    patch=drumkit       gain=1.30 pan=0     reverb=0.16 humanize=0.010
+instrument fx      patch=drumkit       gain=1.05 pan=0     reverb=0.40 humanize=0
+
+# ---------------------------------------------------------------------------
+# 铺底 Pad：每小节一个和弦，整小节持续
+# ---------------------------------------------------------------------------
+pattern pad.verse {
+    Am 0 4
+    F 4 4
+    C 8 4
+    G 12 4
+    Am 16 4
+    F 20 4
+    C 24 4
+    G 28 4
+}
+
+pattern pad.verse2 {
+    Am 0 4
+    F 4 4
+    C 8 4
+    G 12 4
+    Am 16 4
+    F 20 4
+    Dm 24 4
+    E7 28 4
+}
+
+pattern pad.chorus {
+    F 0 4
+    C 4 4
+    G 8 4
+    Am 12 4
+    F 16 4
+    C 20 4
+    G 24 4
+    G 28 4
+}
+
+pattern pad.chorus2 {
+    F 0 4
+    C 4 4
+    G 8 4
+    Am 12 4
+    F 16 4
+    Dm 20 4
+    E7 24 4
+    E7 28 4
+}
+
+pattern pad.bridge {
+    Am 0 4
+    F 4 4
+    Dm 8 4
+    E7 12 4
+    Am 16 4
+    F 20 4
+    Dm 24 4
+    E7 28 4
+}
+
+pattern pad.outro {
+    Am 0 4
+    F 4 4
+    C 8 4
+    G 12 4
+    Am 16 4
+    F 20 4
+    C 24 4
+    Am 28 4
+}
+
+# ---------------------------------------------------------------------------
+# 人声 Pad：只在副歌与高潮出现，给厚度
+# ---------------------------------------------------------------------------
+pattern choir.chorus {
+    F 0 4
+    C 4 4
+    G 8 4
+    Am 12 4
+    F 16 4
+    C 20 4
+    G 24 4
+    G 28 4
+}
+
+pattern choir.chorus2 {
+    F 0 4
+    C 4 4
+    G 8 4
+    Am 12 4
+    F 16 4
+    Dm 20 4
+    E7 24 4
+    E7 28 4
+}
+
+pattern choir.half {
+    Am 0 4
+    F 4 4
+    C 8 4
+    G 12 4
+}
+
+# ---------------------------------------------------------------------------
+# 电钢：全曲的节奏骨架（八分分解和弦，带重音）
+# ---------------------------------------------------------------------------
+pattern keys.intro {
+    Am 0 4
+    F 4 2
+    C 8 4
+    G 12 2
+}
+
+pattern keys.verse {
+    Am 0 4
+    F 4 4
+    C 8 4
+    G 12 4
+    Am 16 4
+    F 20 4
+    C 24 4
+    G 28 4
+}
+
+pattern keys.verse2 {
+    Am 0 4
+    F 4 4
+    C 8 4
+    G 12 4
+    Am 16 4
+    F 20 4
+    Dm 24 4
+    E7 28 4
+}
+
+pattern keys.bridge {
+    Am 0 2
+    F 4 2
+    Dm 8 2
+    E7 12 2
+    Am 16 2
+    F 20 2
+    Dm 24 2
+    E7 28 2
+}
+
+pattern keys.outro {
+    Am 0 4
+    F 4 2
+    C 8 4
+    G 12 2
+}
+
+pattern keys.outro4 {
+    Am 0 4
+    F 4 2
+    C 8 2
+    Am 12 2
+}
+
+pattern keys.half {
+    Am 0 4
+    F 4 4
+    C 8 4
+    G 12 4
+}
+
+pattern keys.chorusHalf {
+    F 0 4
+    C 4 4
+    G 8 4
+    Am 12 4
+}
+
+pattern keys.chorus2 {
+    F 0 4
+    Dm 4 4
+    E7 8 4
+    E7 12 4
+}
+
+# ---------------------------------------------------------------------------
+# 反拍柱式电钢：副歌与高潮的推动
+# ---------------------------------------------------------------------------
+pattern epi.verse {
+    Am 0 4
+    F 4 4
+    C 8 4
+    G 12 4
+    Am 16 4
+    F 20 4
+    C 24 4
+    G 28 4
+}
+
+pattern epi.chorus2 {
+    F 0 4
+    C 4 4
+    G 8 4
+    Am 12 4
+    F 16 4
+    Dm 20 4
+    E7 24 4
+    E7 28 4
+}
+
+# ---------------------------------------------------------------------------
+# 十六分尼龙琶音：副歌起，全曲最快的一条线
+# ---------------------------------------------------------------------------
+pattern arp.verse {
+    Am 0 4
+    F 4 4
+    C 8 4
+    G 12 4
+    Am 16 4
+    F 20 4
+    C 24 4
+    G 28 4
+}
+
+pattern arp.verse2 {
+    Am 0 4
+    F 4 4
+    C 8 4
+    G 12 4
+    Am 16 4
+    F 20 4
+    Dm 24 4
+    E7 28 4
+}
+
+pattern arp.chorus {
+    F 0 4
+    C 4 4
+    G 8 4
+    Am 12 4
+    F 16 4
+    C 20 4
+    G 24 4
+    G 28 4
+}
+
+pattern arp.chorus2 {
+    F 0 4
+    C 4 4
+    G 8 4
+    Am 12 4
+    F 16 4
+    Dm 20 4
+    E7 24 4
+    E7 28 4
+}
+
+pattern arp.bridge {
+    Am 0 4
+    F 4 4
+    Dm 8 4
+    E7 12 4
+    Am 16 4
+    F 20 4
+    Dm 24 4
+    E7 28 4
+}
+
+# ---------------------------------------------------------------------------
+# 拨弦八分琶音（高八度）：给中段加流动感
+# ---------------------------------------------------------------------------
+pattern arp2.verse2 {
+    Am 0 4
+    F 4 4
+    C 8 4
+    G 12 4
+    Am 16 4
+    F 20 4
+    Dm 24 4
+    E7 28 4
+}
+
+pattern arp2.chorus2 {
+    F 0 4
+    C 4 4
+    G 8 4
+    Am 12 4
+    F 16 4
+    Dm 20 4
+    E7 24 4
+    E7 28 4
+}
+
+# ---------------------------------------------------------------------------
+# 弦乐衬底（高八度长音）
+# ---------------------------------------------------------------------------
+pattern strings.verse {
+    Am 0 4
+    F 4 4
+    C 8 4
+    G 12 4
+    Am 16 4
+    F 20 4
+    C 24 4
+    G 28 4
+}
+
+pattern strings.verse2 {
+    Am 0 4
+    F 4 4
+    C 8 4
+    G 12 4
+    Am 16 4
+    F 20 4
+    Dm 24 4
+    E7 28 4
+}
+
+pattern strings.chorus {
+    F 0 4
+    C 4 4
+    G 8 4
+    Am 12 4
+    F 16 4
+    C 20 4
+    G 24 4
+    G 28 4
+}
+
+pattern strings.chorus2 {
+    F 0 4
+    C 4 4
+    G 8 4
+    Am 12 4
+    F 16 4
+    Dm 20 4
+    E7 24 4
+    E7 28 4
+}
+
+pattern strings.bridgeB {
+    Am 0 4
+    F 4 4
+    Dm 8 4
+    E7 12 4
+}
+
+# ---------------------------------------------------------------------------
+# 高频空气层：只在高潮铺开
+# ---------------------------------------------------------------------------
+pattern shimmer.D1 {
+    Am 0 8
+    F 8 8
+    C 16 8
+    G 24 8
+}
+
+pattern shimmer.D2 {
+    F 0 4
+    C 4 4
+    G 8 4
+    Am 12 4
+    F 16 4
+    Dm 20 4
+    E7 24 4
+    E7 28 4
+}
+
+pattern shimmer.outro {
+    Am 0 8
+    F 8 8
+}
+
+# ---------------------------------------------------------------------------
+# Sub 贝斯：root8 = 根音八分脉冲，每小节第 4 个八分换五度
+# ---------------------------------------------------------------------------
+pattern bass.verse {
+    Am 0 4
+    F 4 4
+    C 8 4
+    G 12 4
+    Am 16 4
+    F 20 4
+    C 24 4
+    G 28 4
+}
+
+pattern bass.verse2 {
+    Am 0 4
+    F 4 4
+    C 8 4
+    G 12 4
+    Am 16 4
+    F 20 4
+    Dm 24 4
+    E7 28 4
+}
+
+pattern bass.chorus {
+    F 0 4
+    C 4 4
+    G 8 4
+    Am 12 4
+    F 16 4
+    C 20 4
+    G 24 4
+    G 28 4
+}
+
+pattern bass.chorus2 {
+    F 0 4
+    C 4 4
+    G 8 4
+    Am 12 4
+    F 16 4
+    Dm 20 4
+    E7 24 4
+    E7 28 4
+}
+
+pattern bass.bridge {
+    Am 0 4
+    F 4 4
+    Dm 8 4
+    E7 12 4
+    Am 16 4
+    F 20 4
+    Dm 24 4
+    E7 28 4
+}
+
+# 长音贝斯（root = 只取根音）
+pattern bass2.intro {
+    Am 0 4
+    F 4 4
+}
+
+pattern bass2.bridgeA {
+    Am 0 4
+    F 4 4
+    Dm 8 4
+    E7 12 4
+}
+
+pattern bass2.outro {
+    Am 0 8
+    F 8 8
+    C 16 8
+    Am 24 8
+}
+
+# ---------------------------------------------------------------------------
+# 主旋律
+#   M   = 主题原型（Am F C G），乐句顶点在 A5
+#   M2  = 主题换尾（Am F Dm E7），G# 导音拉回主调
+#   M3  = 高潮变形，全曲最高音 C6 在此（第 53 小节，全曲 72% 处）
+#   C   = 副歌主题（F C G Am），音区更高、时值更长
+#   C2  = 副歌推进（F Dm E7 E7），收在长音上
+# ---------------------------------------------------------------------------
+pattern lead.M {
+    E5 0 1.5 .92
+    A5 1.5 .5 .84
+    G5 2 1 .80
+    E5 3 1 .76
+    F5 4 1.5 .88
+    E5 5.5 .5 .78
+    D5 6 1.5 .76
+    E5 8 1 .84
+    G5 9 1.5 .86
+    A5 10.5 .5 .80
+    G5 11 1 .78
+    D5 12 2 .86
+    B4 14 1 .74
+}
+
+pattern lead.M2 {
+    E5 0 1.5 .92
+    A5 1.5 .5 .84
+    G5 2 1 .80
+    E5 3 1 .76
+    F5 4 1.5 .88
+    E5 5.5 .5 .78
+    D5 6 1.5 .76
+    F5 8 1.5 .84
+    E5 9.5 .5 .76
+    D5 10 2 .76
+    D5 12 1 .86
+    B4 13 1 .80
+    G#4 14 1 .78
+    B4 15 1 .82
+}
+
+pattern lead.M3 {
+    A5 0 1 .95
+    C6 1 2 .98
+    B5 3 1 .90
+    A5 4 1.5 .90
+    G5 5.5 .5 .84
+    F5 6 2 .88
+    E5 8 1 .88
+    G5 9 1 .86
+    A5 10 2 .90
+    G5 12 1.5 .90
+    D5 13.5 .5 .82
+    B4 14 2 .84
+}
+
+pattern lead.C {
+    A5 0 1.5 .95
+    G5 1.5 .5 .85
+    F5 2 2 .88
+    G5 4 1.5 .90
+    E5 5.5 .5 .80
+    G5 6 1.5 .84
+    A5 7.5 .5 .80
+    B5 8 2 .95
+    A5 10 1 .86
+    G5 11 1 .82
+    E5 12 2 .90
+    A5 14 2 .88
+}
+
+pattern lead.C2 {
+    A5 0 2 .95
+    G5 2 1 .85
+    F5 3 1 .82
+    A5 4 1 .90
+    F5 5 1 .82
+    D5 6 2 .80
+    B4 8 1 .85
+    G#4 9 1 .82
+    B4 10 1.5 .85
+    D5 11.5 .5 .80
+    E5 12 4 .90
+}
+
+pattern lead.bridgeA {
+    E5 0 2 .78
+    A5 2 2 .80
+    A5 4 1.5 .78
+    G5 5.5 .5 .72
+    F5 6 2 .76
+    F5 8 2 .76
+    D5 10 2 .74
+    B4 12 2 .74
+    G#4 14 2 .72
+}
+
+pattern lead.bridgeB {
+    E5 0 1 .80
+    A5 1 1 .82
+    B5 2 2 .86
+    A5 4 2 .84
+    G5 6 1 .78
+    F5 7 1 .76
+    F5 8 1 .80
+    A5 9 1 .82
+    D5 10 2 .78
+    E5 12 4 .86
+}
+
+pattern lead.outro {
+    E5 0 1.5 .72
+    A5 1.5 .5 .62
+    G5 2 1 .60
+    F5 4 1.5 .64
+    E5 5.5 .5 .56
+    D5 6 1.5 .54
+    E5 8 1 .58
+    G5 9 1 .56
+    E5 10 2 .52
+    E5 12 2 .60
+    A5 14 2 .58
+}
+
+# 副歌第二遍换尾（F C G G）：末小节落在 G 和弦上
+pattern lead.C3 {
+    A5 0 1.5 .95
+    G5 1.5 .5 .85
+    F5 2 2 .88
+    G5 4 1.5 .90
+    E5 5.5 .5 .80
+    G5 6 1.5 .84
+    A5 7.5 .5 .80
+    B5 8 2 .95
+    A5 10 1 .86
+    G5 11 1 .82
+    D5 12 1.5 .88
+    B4 13.5 .5 .80
+    D5 14 1 .84
+    G5 15 1 .86
+}
+
+# ---------------------------------------------------------------------------
+# 对位声部（副歌后半作应答）
+# ---------------------------------------------------------------------------
+pattern counter.C {
+    C5 0 2 .60
+    A4 2 2 .55
+    E5 4 2 .60
+    G4 6 2 .55
+    D5 8 2 .60
+    B4 10 2 .55
+    C5 12 2 .60
+    A4 14 2 .55
+}
+
+pattern counter.C3 {
+    C5 0 2 .60
+    A4 2 2 .55
+    E5 4 2 .60
+    G4 6 2 .55
+    D5 8 2 .60
+    B4 10 2 .55
+    D5 12 2 .58
+    B4 14 2 .55
+}
+
+pattern counter.C2 {
+    C5 0 2 .58
+    A4 2 2 .54
+    D5 4 2 .58
+    A4 6 2 .54
+    B4 8 2 .58
+    G#4 10 2 .54
+    B4 12 4 .56
+}
+
+# 高潮前半段的对位线（Am F C G 两遍），与主旋律成三/六度关系
+pattern counter.D {
+    C5 0 2 .50
+    E5 2 2 .52
+    A4 4 2 .50
+    C5 6 2 .52
+    G4 8 2 .50
+    E5 10 2 .52
+    B4 12 2 .50
+    D5 14 2 .52
+    C5 16 2 .50
+    E5 18 2 .52
+    A4 20 2 .50
+    C5 22 2 .52
+    G4 24 2 .50
+    E5 26 2 .52
+    B4 28 2 .50
+    D5 30 2 .52
+}
+
+# ---------------------------------------------------------------------------
+# 钟琴：序与尾声的动机碎片
+# ---------------------------------------------------------------------------
+pattern bell.motif {
+    A5 0 1 .70
+    E6 1 1 .58
+    C6 2 2 .54
+    A5 4 1 .64
+    F5 5 1 .58
+    C6 6 2 .54
+    C6 8 1 .64
+    G5 9 1 .58
+    E5 10 2 .54
+    G5 12 1 .64
+    D5 13 1 .58
+    B4 14 2 .54
+}
+
+pattern bell.final {
+    A5 0 2 .50
+    E6 2 2 .40
+    F5 4 2 .46
+    C6 6 2 .40
+    C6 8 1 .46
+    E6 9 1 .40
+    A5 12 4 .50
+}
+
+# ---------------------------------------------------------------------------
+# 鼓组（X 重音 / x 常规 / o 开镲 / . 休止）
+# ---------------------------------------------------------------------------
+pattern drum.soft {
+    grid 16
+    kick  X . . . . . . . . . X . . . . .
+    snare . . . . X . . . . . . . X . . .
+    hat   x . x . x . x . x . x . x . x .
+}
+
+pattern drum.groove {
+    grid 16
+    kick  X . . . . . X . . . X . . . . .
+    snare . . . . X . . . . . . . X . . .
+    hat   X . x . X . x . X . x . X . x .
+    ohat  . . . . . . . . . . . . . . o .
+}
+
+pattern drum.drive {
+    grid 16
+    kick  X . . . . . X . . . X . . . . .
+    snare . . . . X . . . . . . . X . . .
+    clap  . . . . . . . . . . . . X . . .
+    hat   X . x . X . x . X . x . X . x .
+}
+
+pattern drum.climax {
+    grid 16
+    kick  X . . . . . X . . X . . . X . .
+    snare . . . . X . . . . . . . X . . .
+    clap  . . . . . . . . . . . . X . . .
+    hat   X . x . X . x . X . x . X . x .
+    ride  x . . . x . . . x . . . x . . .
+    ohat  . . . . . . . . . . . . . . o .
+}
+
+pattern drum.climax16 {
+    grid 16
+    kick  X . . . . . X . . X . . . X . .
+    snare . . . . X . . . . . . . X . . .
+    clap  . . . . . . . . . . . . X . . .
+    hat   X x x x X x x x X x x x X x x x
+    ride  x . . . x . . . x . . . x . . .
+}
+
+pattern drum.fill {
+    grid 16
+    kick  X . . . . . . . . . . . . . . .
+    snare . . . . X . . . x . x . X . . .
+    tom   . . . . . . . . . . . . . . X X
+    hat   x . x . x . x . x . x . x . x .
+}
+
+pattern drum.fill2 {
+    grid 16
+    kick  X . . . . . . . . . . . . . . .
+    snare . . . . X . . . . . X x X x X x
+    tom   . . . . . . . . x . . . . . . .
+    hat   X x X x X x X x X x X x X x X x
+}
+
+pattern drum.break {
+    grid 16
+    kick   X . . . . . . . . . . . . . . .
+    shaker . . x . . . x . . . x . . . x .
+}
+
+# ---------------------------------------------------------------------------
+# 音效（走鼓组音色）
+# ---------------------------------------------------------------------------
+pattern fx.crash {
+    crash 0 4 1.0
+}
+
+pattern fx.riser {
+    riser 0 4 0.9
+}
+
+pattern fx.downlift {
+    downlift 0 4 0.55
+}
+
+# ===========================================================================
+# 编排表
+# ===========================================================================
+arrange
+    # ---------- 序（1-8）：只有 pad、钟琴、稀疏电钢，一层层加进来
+    bars 1-8     pad.verse gain=0.65
+    bars 1-4     bell.motif gain=0.62
+    bars 5-8     bell.motif gain=0.50
+    bars 5-8     keys.intro gain=0.62
+    bars 7-8     bass2.intro gain=0.45
+    bars 8-8     fx.riser
+
+    # ---------- A1（9-16）：主题第一次陈述，轻鼓进
+    bars 9-16    pad.verse gain=0.78
+    bars 9-12    lead.M
+    bars 13-16   lead.M
+    bars 9-16    keys.verse gain=0.70
+    bars 9-16    bass.verse gain=0.95
+    bars 9-15    drum.soft
+    bars 16-16   drum.fill
+
+    # ---------- A2（17-24）：加弦乐、拨弦，句尾转 Dm-E7 推动
+    bars 17-24   pad.verse2 gain=0.85
+    bars 17-20   lead.M
+    bars 21-24   lead.M2
+    bars 17-24   keys.verse2 gain=0.78
+    bars 17-24   arp2.verse2 gain=0.40
+    bars 17-24   strings.verse2 gain=0.50
+    bars 17-24   bass.verse2 gain=0.95
+    bars 17-23   drum.groove
+    bars 24-24   drum.fill
+
+    # ---------- B1（25-32）：副歌，音区抬高、时值放长
+    bars 25-32   pad.chorus gain=0.95
+    bars 25-32   choir.chorus gain=0.50
+    bars 25-28   lead.C
+    bars 29-32   lead.C3
+    bars 25-32   arp.chorus gain=0.50
+    bars 25-32   strings.chorus gain=0.55
+    bars 25-28   counter.C gain=0.45
+    bars 29-32   counter.C3 gain=0.45
+    bars 25-32   bass.chorus gain=1.05
+    bars 25-31   drum.drive
+    bars 25-25   fx.crash
+    bars 32-32   drum.fill
+
+    # ---------- B2（33-40）：副歌推进，加入柱式电钢与开镲
+    bars 33-40   pad.chorus2 gain=0.95
+    bars 33-40   choir.chorus2 gain=0.55
+    bars 33-36   lead.C
+    bars 37-40   lead.C2
+    bars 33-40   arp.chorus2 gain=0.55
+    bars 33-40   strings.chorus2 gain=0.55
+    bars 33-40   epi.chorus2 gain=0.55
+    bars 33-40   bass.chorus2 gain=1.05
+    bars 33-39   drum.drive
+    bars 33-33   fx.crash
+    bars 40-40   drum.fill2
+    bars 40-40   fx.downlift gain=0.5
+
+    # ---------- 桥（41-48）：抽掉鼓与贝斯律动，只留呼吸（全曲谷底）
+    bars 41-48   pad.bridge gain=0.50
+    bars 41-48   keys.bridge gain=0.55
+    bars 41-44   lead.bridgeA gain=0.75
+    bars 45-48   lead.bridgeB gain=0.80
+    bars 41-44   bass2.bridgeA gain=0.35
+    bars 45-48   bass2.bridgeA gain=0.35
+    bars 45-48   strings.bridgeB gain=0.45 octave=-1
+    bars 47-48   drum.break
+    bars 48-48   fx.riser
+
+    # ---------- 高潮（49-64）：全奏，最高音在第 53 小节
+    bars 49-56   pad.verse gain=1.05
+    bars 57-64   pad.chorus2 gain=1.05
+    bars 53-56   choir.half gain=0.70
+    bars 57-64   choir.chorus2 gain=0.70
+    bars 49-52   lead.M gain=1.15
+    bars 53-56   lead.M3 gain=1.15
+    bars 57-60   lead.C gain=1.15
+    bars 61-64   lead.C2 gain=1.15
+    bars 49-56   counter.D gain=0.45
+    bars 57-60   counter.C gain=0.45
+    bars 61-64   counter.C2 gain=0.45
+    bars 49-56   arp.verse gain=0.55
+    bars 57-64   arp.chorus2 gain=0.55
+    bars 57-64   arp2.chorus2 gain=0.40
+    bars 57-60   keys.chorusHalf gain=0.70
+    bars 61-64   keys.chorus2 gain=0.70
+    bars 49-56   strings.verse gain=0.60
+    bars 57-64   strings.chorus2 gain=0.60
+    bars 49-56   shimmer.D1 gain=0.50
+    bars 57-64   shimmer.D2 gain=0.45
+    bars 49-56   epi.verse gain=0.55
+    bars 57-64   epi.chorus2 gain=0.55
+    bars 49-56   bass.verse gain=1.12
+    bars 57-64   bass.chorus2 gain=1.12
+    bars 49-55   drum.climax
+    bars 57-63   drum.climax
+    bars 49-49   fx.crash
+    bars 57-57   fx.crash
+    bars 56-56   drum.climax16
+    bars 64-64   drum.fill2
+
+    # ---------- 尾声（65-72）：逐层撤退，最后只留长音与钟琴
+    bars 65-72   pad.outro gain=0.62
+    bars 65-68   lead.M gain=0.60
+    bars 65-68   keys.half gain=0.50
+    bars 65-68   bell.motif gain=0.50
+    bars 65-68   drum.soft gain=0.90
+    bars 65-72   bass2.outro gain=0.55
+    bars 69-72   lead.outro gain=0.55
+    bars 69-72   keys.outro4 gain=0.45
+    bars 69-72   shimmer.outro gain=0.40
+    bars 69-72   bell.final gain=0.55
